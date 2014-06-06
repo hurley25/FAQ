@@ -35,8 +35,7 @@ I added this comment just to point out a reason. I've seen a few others trying t
 
 既然整个过程主要卡在了google资源的加载中，最直接的方法就是替换相关的资源或者弃之不用（当然后者可能是一个不太理想的解决方法）。针对前一中方法，国内有360CDN(内容分发网络)可以代替GOOGLE CDN,所以可以直接把web源码中所有引用到GOOGLE CDN的资源全部替换为360CDN上的资源，简单粗暴的办法就是直接在源码根目录下查找包含"googleapis"的文件（终端下执行 grep -R "googleapis ./"），然后将"googleapis"一一替换为"useso"。
 
-![image](https://github.com/Jensyn/FAQ/raw/master/images/why-wp-load-slowly/grep-r-fonts-google.png)
-![image](https://github.com/ButBueatiful/dotvim/raw/master/screenshots/vim-screenshot.jpg)
+![image](https://raw.githubusercontent.com/Jensyn/FAQ/gh-pages/images/why-wp-load-slowly/grep-r-fonts-google.png)
 
 还有一种方法，就是根据网上所说的，把引用到的资源下载到本地，然后修改相关的代码即可。
 
