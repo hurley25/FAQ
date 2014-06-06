@@ -10,7 +10,7 @@ tags: [web, googleapis]
 
 ## 解决思路
 
-**分析原因的方法**
+**分析原因**
 
 方法一：利用chrome或者是firefox自带的开发者工具（针对这两款浏览器，都可以用快捷键F12打开），选择network标签，可以查看当前网页加载的过程：包括哪个时间段加载哪些资源以及加载每个资源所用的时间等等。
 针对本人所遇到的情况，chrome直接显示如下错误，看来确实是fonts.googleapis.com****之类的资源加载耗费了大多数的时间。
@@ -31,7 +31,7 @@ Anyway, thanks for the "Disable Google Fonts" plugin link Cyril, it also worked 
 I added this comment just to point out a reason. I've seen a few others trying to figure this problem out, including adrelanos, but it doesn't seem to be understood why people might not want it. 
 "
 
-**具体过程描述**
+**解决方法**
 
 既然整个过程主要卡在了google资源的加载中，最直接的方法就是替换相关的资源或者弃之不用（当然后者可能是一个不太理想的解决方法）。针对前一中方法，国内有360CDN(内容分发网络)可以代替GOOGLE CDN,所以可以直接把web源码中所有引用到GOOGLE CDN的资源全部替换为360CDN上的资源，简单粗暴的办法就是直接在源码根目录下查找包含"googleapis"的文件（终端下执行 grep -R "googleapis ./"），然后将"googleapis"一一替换为"useso"。
 
