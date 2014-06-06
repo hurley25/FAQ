@@ -42,7 +42,7 @@ I added this comment just to point out a reason. I've seen a few others trying t
 
 经过以上的修改，网页基本上可以正常访问了。
 
-![image](https://github.com/Jensyn/FAQ/blob/gh-pages/images/why-wp-load-slowly/result.png)
+(https://github.com/Jensyn/FAQ/blob/gh-pages/images/why-wp-load-slowly/result.png)
 
 ## 参考文档
 
