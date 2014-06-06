@@ -13,8 +13,8 @@ tags: [web, googleapis]
 **分析原因的方法**
 
 方法一：利用chrome或者是firefox自带的开发者工具（针对这两款浏览器，都可以用快捷键F12打开），选择network标签，可以查看当前网页加载的过程：包括哪个时间段加载哪些资源以及加载每个资源所用的时间等等。
-针对本人所遇到的情况，结果显示确实是fonts.googleapis.com****之类的资源加载耗费了大多数的时间。
-
+针对本人所遇到的情况，chrome直接显示如下错误，看来确实是fonts.googleapis.com****之类的资源加载耗费了大多数的时间。
+![image](https://raw.githubusercontent.com/Jensyn/FAQ/gh-pages/images/why-wp-load-slowly/problem.jpg)
 
 方法二："wp有插件可以统计自己生成一个页面所用的时间，可以细化到php时间和mysql时间，再配合apache或者nginx和系统日志，基本上能解决各端的所有问题"（转自刘欢学长）
 
@@ -46,8 +46,12 @@ I added this comment just to point out a reason. I've seen a few others trying t
 ## 参考文档
 
 [网站加载速度变慢的原因和解决方法](http://www.zhuji91.com/wangzhanjiazaisudu)
+
 [删除wordpress内置的googleapis在线字体 ](http://blog.motea.org/29.html)
+
 [How to disable fonts.googleapis.com?](http://wordpress.org/support/topic/how-to-disable-fontsgoogleapiscom)
+
 [CDN（内容分发网络）技术原理](http://kb.cnblogs.com/page/121664/)
+
 [谷歌字体API使用教程](http://www.chinaz.com/web/2010/0604/117757.shtml)
 
