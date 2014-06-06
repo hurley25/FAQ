@@ -41,5 +41,9 @@ I added this comment just to point out a reason. I've seen a few others trying t
 
 ## 参考文档
 
-[网站加载速度慢是什么原因造成](http://bbs.tianya.cn/post-it-648236-1.shtml)
+[网站加载速度变慢的原因和解决方法](http://www.zhuji91.com/wangzhanjiazaisudu)
+[删除wordpress内置的googleapis在线字体 ](http://blog.motea.org/29.html)
+[How to disable fonts.googleapis.com?](http://wordpress.org/support/topic/how-to-disable-fontsgoogleapiscom)
+[CDN（内容分发网络）技术原理](http://kb.cnblogs.com/page/121664/)
+[谷歌字体API使用教程](http://www.chinaz.com/web/2010/0604/117757.shtml)
 
