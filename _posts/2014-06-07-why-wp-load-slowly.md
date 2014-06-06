@@ -3,7 +3,7 @@ layout: post
 category: note
 title: WordPress加载缓慢原因分析
 tagline: by Jensyn
-tags: [web, google]
+tags: [web, googleapis]
 ---
 ## 问题描述
 最近不知怎么回事，搭建在sae上的wordpress加载起来特别慢,本以为是sae服务器的问题，结果测试发现同在sae上的另一个应用却能够正常地访问。当时想着会不会是安装了某个不恰当的插件或是主题造成的结果。于是在小组群里请教，刘欢学长给出指示说可能是google资源被屏蔽造成的。在欢学长的指导下最终解决了问题。
@@ -35,7 +35,7 @@ I added this comment just to point out a reason. I've seen a few others trying t
 
 既然整个过程主要卡在了google资源的加载中，最直接的方法就是替换相关的资源或者弃之不用（当然后者可能是一个不太理想的解决方法）。针对前一中方法，国内有360CDN(内容分发网络)可以代替GOOGLE CDN,所以可以直接把web源码中所有引用到GOOGLE CDN的资源全部替换为360CDN上的资源，简单粗暴的办法就是直接在源码根目录下查找包含"googleapis"的文件（终端下执行 grep -R "googleapis ./"），然后将"googleapis"一一替换为"useso"。
 
-![image](https://raw.githubusercontent.com/Jensyn/FAQ/gh-pages/images/why-wp-load-slowly/grep-r-fonts-google.png)
+![image](https://raw.githubusercontent.com/Jensyn/FAQ/39a800afd7c063263d757a01d1b882e9ce4da884/images/why-wp-load-slowly/grep-r-fonts-google.png)
 
 还有一种方法，就是根据网上所说的，把引用到的资源下载到本地，然后修改相关的代码即可。
 
