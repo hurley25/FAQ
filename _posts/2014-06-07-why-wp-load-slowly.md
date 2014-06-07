@@ -1,7 +1,7 @@
 ---
 layout: post
 category: note
-title: WordPress加载缓慢原因分析
+title: WordPress加载缓慢问题解决
 tagline: by Jensyn
 tags: [web, googleapis]
 ---
