@@ -1,7 +1,11 @@
 ---
 layout: post
 category: note
+<<<<<<< HEAD
 title: WordPress加载缓慢原因分析
+=======
+title: WordPress加载缓慢问题解决
+>>>>>>> 1845648ddac8f7b5d6da4940866907bfe51933c2
 tagline: by Jensyn
 tags: [web, googleapis]
 ---
@@ -54,4 +58,7 @@ I added this comment just to point out a reason. I've seen a few others trying t
 [CDN（内容分发网络）技术原理](http://kb.cnblogs.com/page/121664/)
 
 [谷歌字体API使用教程](http://www.chinaz.com/web/2010/0604/117757.shtml)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1845648ddac8f7b5d6da4940866907bfe51933c2
