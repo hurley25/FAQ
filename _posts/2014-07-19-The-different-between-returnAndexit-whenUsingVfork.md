@@ -11,7 +11,6 @@ tags: [ LinuxC]
 在看到关于vfork这里的时候，出现了一些问题
 以下为出现问题程序的代码
 
-    enter code here 
     #include <unistd.h>
     #include <stdio.h>
     #include <stdlib.h>
@@ -70,4 +69,6 @@ vfork()函数在《LinuxC编程实战》中说道：“用vfork创建的子进�
 而当我将main函数末尾的exit(0)改为return 0时  程序出现了一些错误
 ![image](https://raw.githubusercontent.com/Gaoyuan0710/FAQ/gh-pages/images/The-different-between-returnAndexit-whenUsingVfork/3.png)
 在显示调用exit后能够得到正确的执行结果，而通过return 0的隐式调用为什么是错误的？  想知道在子进程结束到父进程开始这段时间内到底做了哪些工作，为什么会出现以上的错误
-《Unix环境高级编程》上讲：“如果子进程修改数据、进行函数调用、或者没有调用exec或exit就返回都可能会带来未知的结果” 
+《Unix环境高级编程》上讲：“如果子进程修改数据、进行函数调用、或者没有调用exec或exit就返回都可能会带来未知的结果”
+##补充##
+在使用32位编译时return和exit结果无任何不同，但是在使用64位编译时发现使用return结束不同电脑出现的 var是不同的
