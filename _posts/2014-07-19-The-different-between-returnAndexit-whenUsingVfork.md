@@ -83,13 +83,13 @@ Qianyi：
 
 我说一下我的理解，首先我介绍一下vfork函数出现的原因：
 
-在早期的时候，fork函数用于创建子进程，会**完全的**复制其父进程的完整的地址空间的内存页来为子进程创建空间。但是这么做的缺陷很明显，会有很多没有必要的复制产生，而且对于像shell的这样的程序而言，当我们敲下一个命令之后，会立即fork出子进程并且调用exec来为其加载代码和创建新的内存空间。早期的fork函数在这一点上造成了很大的效率问题。
+在早期的时候，fork函数用于创建子进程，会**完全的**复制其父进程的完整的地址空间的内存页来为子进程创建空间。但是这么做的缺陷很明显，会有很多没有必要的复制产生，而且对于像shell的这样的程序而言，当我们敲下一个命令之后，会立即fork出子进程并且调用exec来为其加载代码和创建新的内存空间，就产生了两次复制（第一次没必要复制不是么）。早期的fork函数在这一点上造成了很大的效率问题。
 
-于是，便有了vfork函数，vfork并不复制父进程的地址空间，而是**直接借用**原来父进程的地址空间里。想必你也看出来了，此时内核必须挂起父进程，不然的话两个进程运行在同一个地址空间里不出问题才怪。**内核保证vfork调用后，子进程先于父进程执行就是因为这个。**对于shell来说，vfork一下，挂起父进程，子进程临时借用父进程的地址空间（主要是代码段）执行一下exec族的函数，内核会立即为其加载新的地址空间，然后允许其父进程继续运行。这样冲突不久解决了么？ vfork函数甚至就是专门用来解决shell这种fork后需要理解exec加载新的程序的需求的。
+于是，便有了vfork函数，vfork并不复制父进程的地址空间，而是**直接借用**原来父进程的地址空间里。想必你也看出来了，此时内核必须挂起父进程，不然的话两个进程运行在同一个地址空间里不出问题才怪。**内核保证vfork调用后，子进程先于父进程执行就是因为这个。**对于shell来说，vfork一下，挂起父进程，子进程临时借用父进程的地址空间（主要是代码段）执行一下exec族的函数，内核会立即为其加载新的地址空间，然后允许其父进程继续运行。这样冲突不就解决了么？ vfork函数甚至就是专门用来解决shell这种fork后需要立刻调用exec加载新的程序的需求的。
 
 **那么，如果我们不这么做，会发生什么事情？**
 
-首先，共享整个地址空间意味着什么？**子进程对内存的所有修改对之后运行的父进程可见！！试想一下你和别人公用一个宿舍，你出去之后舍友搬动了一个椅子也走了，你再次回来的时候自然是你室友搬动后的样子。
+首先，共享整个地址空间意味着什么？**子进程对内存的所有修改对之后运行的父进程可见！！**试想一下你和别人公用一个宿舍，你出去之后舍友搞乱了宿舍也走了，你再次回来的时候自然是你室友搞乱之后的样子。
 
 然后，我们再来讨论一下在main函数里return和调用exit的区别。main里面return返回到什么地方？答案是库函数调用我们main函数的地方。大家没意见吧？其实我们在main函数里返回之后，库代码也是最终调用exit族的函数退出的。那么区别何在？看下面的示例：
 
@@ -99,17 +99,16 @@ Qianyi：
 		exit(ret);
 	}
 	
-大家看到了什么？子进程main先返回了，库函数做了一些东西之后也调用了main退出了。**但是！！请注意栈的变化！！main返回后做了些事情，在原来main所在的位置调用了exit函数！！！**意味着main原先的局部变量存储很可能被破坏！那么，子进程推出后，父进程再次执行的时候...悲剧产生了。谁也不知道此时的栈被子进程破坏成啥样了，所以文档说**未知的结果**。不同的发行版和glibc库的版本完全就不一样了，对的话算运气好，不对也很正常。（全局变量存储区距离栈比较远，一般可以幸免）为什么直接调用exit不会出错？因为exit在main里调用，exit的栈临时空间在main之下，自然不会错。
+大家看到了什么？子进程main先返回了，库函数做了一些东西之后也调用了main退出了。**但是！！请注意栈的变化！！main返回后做了些事情，会在原来main所在的栈位置创建了exit等函数的临时存储区！！！**意味着main原先的局部变量存储很可能被破坏！那么，子进程退出后，父进程再次执行的时候...悲剧产生了。谁也不知道此时的栈被子进程破坏成啥样了，所以文档说**未知的结果**。不同的发行版和glibc库的版本完全就不一样了，对的话算运气好，不对也很正常，甚至直接段错误我都觉得没啥好奇怪的。（全局变量存储区距离栈比较远，一般可以幸免）为什么直接调用exit不会出错？因为exit在main里调用，exit的栈临时空间在main之下，自然不会错。
 
 理解了吗？顺带说一下自从fork实现了**写时拷贝**之后，vfork彻底**弃用**，所以别用vfork了，毕竟两个程序公用地址空间而且都可以读写太危险了！
 
-至于exit和_exit的区别？大家会google的对吧？
+至于exit和\_exit的区别？大家会google的对吧？
 
-下面是vfork的main文档。虽然没解释原因，但是man文档清楚地说明了应该立即调用_exit或者exec族的函数（离开暂时借用的父进程的空间）。
+下面是vfork的man文档。虽然没解释原因，但是man文档清楚地说明了应该立即调用\_exit或者exec族的函数（离开暂时借用的父进程的空间）。
 
-Linux Description
+ Standard Description
+ 
+(From POSIX.1) The vfork() function has the same effect as fork(2), except that the behavior is undefined if the process created by vfork() either modifies any data other than a variable of type pid_t used to store the return value from vfork(), or returns from the  function  in which vfork() was called, or calls any other function before successfully calling \_exit(2) or one of the exec(3) family of functions.
 
-  vfork(), just like fork(2), creates a child process of the calling process.  For details and return value and errors, see fork(2).
-  
-  vfork()  is  a special case of clone(2).  It is used to create new processes without copying the page tables of the parent process.  It may be useful in performance-sensitive applications where a child is created which then immediately issues an execve(2).
 
