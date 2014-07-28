@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 关于pthread_join()的一点小疑问
+title: 关于线程条件变量和互斥锁的一点小疑问
 tagline: by Reazon
 tags: [ LinuxC]
 ---
