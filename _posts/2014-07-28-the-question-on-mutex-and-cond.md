@@ -123,3 +123,9 @@ Qianyi:
 **顺便说一句，原则上pthread_cond_signal(&cond);不需要加锁就可以发的，pthread_cond_signal(&cond);那片代码出现的mutex作用依旧是保证条件读写的原子性！**
 
 **综上，pthread_cond_wait是一个实用主义的函数，当然，也容易搞糊涂初学者。**
+
+无图无真相，下面分别是pthread_cond_wait等待前的解锁和成功返回时的解锁部分截图。
+
+![image](https://raw.githubusercontent.com/hurley25/FAQ/gh-pages/the-question-on-mutex-and-cond/unlock.jpg)
+
+![image](https://raw.githubusercontent.com/hurley25/FAQ/gh-pages/the-question-on-mutex-and-cond/lock.jpg)
