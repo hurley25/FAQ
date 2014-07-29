@@ -90,3 +90,36 @@ fun2陷入休眠
 经检验和思考过程一致，那为什么那种模式是对的？或者说我应用的方式不对？
 ————————————————————
 
+Qianyi:
+
+嗯，你之前的理解都没有问题，但是注意下面这个细节：
+
+	pthread_mutex_lock(&mutex);
+	while (!a) {
+		pthread_cond_wait(&cond, &mutex);
+	}
+	pthread_mutex_unlock(&mutex);
+
+注意mutex其实是保证对这个条件判断的原子性的，也就是说**对这个条件的修改和判断必须是原子操作**。
+
+而pthread_cond_wait容易让人误解的地方就是这里，pthread_cond_wait做的事情比较多。首先，pthread_cond_wait解开了那个mutex，然后等在了那个条件变量上（阻塞）。当signal被触发，离开pthread_cond_wait函数的时候，mutex又被自动加锁了。
+
+**仔细理解这个过程，可以看到，pthread_cond_wait和我们自己的mutex一起配合，保证了我们对这个条件进行修改和判断的原子性。**
+
+**为什么修改和判断这个条件需要原子性？这个不用解释吧？当两个线程同时操作一个变量的时候，时序可能会导致错误。那个银行存取钱的例子举了很多次了。**
+
+如果我们假设pthread_cond_wait不会对锁进行操作（下面代码是错的），那么代码会写成下面这样：
+	
+	pthread_mutex_lock(&mutex);
+	while (!a) {
+		pthread_mutex_unlock(&mutex);
+		pthread_cond_wait(&cond);
+		pthread_mutex_lock(&mutex);
+	}
+	pthread_mutex_unlock(&mutex);
+
+这样也能保证每次判断和修改都是原子的，但是每次都这么写，干脆mutex参数被加到了pthread_cond_wait函数，它代劳了。
+
+**顺便说一句，原则上pthread_cond_signal(&cond);不需要加锁就可以发的，pthread_cond_signal(&cond);那片代码出现的mutex作用依旧是保证条件读写的原子性！**
+
+**综上，pthread_cond_wait是一个实用主义的函数，当然，也容易搞糊涂初学者。**
