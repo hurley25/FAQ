@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: [答题赢公仔系列]实现CountDownLatch数据结构
+title: 答题赢公仔系列——实现CountDownLatch数据结构
 tagline: by 浅奕
 tags: [network, Linux]
 ---

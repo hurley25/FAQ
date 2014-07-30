@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: [答题赢公仔系列]listen函数之backlog参数
+title: 答题赢公仔系列——listen函数之backlog参数
 tagline: by 浅奕
 tags: [network, Linux]
 ---

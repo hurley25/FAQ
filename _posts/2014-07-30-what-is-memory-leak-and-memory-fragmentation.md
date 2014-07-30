@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: [答题赢公仔系列]什么是内存泄漏？什么是内存碎片？
+title: 答题赢公仔系列——什么是内存泄漏？什么是内存碎片？
 tagline: by 浅奕
 tags: [network, Linux]
 ---

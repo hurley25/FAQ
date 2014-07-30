@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: [答题赢公仔系列]如何使用UDP协议连接两个局域网内的主机？
+title: 答题赢公仔系列——如何使用UDP协议连接两个局域网内的主机？
 tagline: by 浅奕
 tags: [network, Linux]
 ---

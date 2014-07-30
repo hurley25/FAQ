@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: [答题赢公仔系列]read函数的返回值含义
+title: 答题赢公仔系列——read函数的返回值含义
 tagline: by 浅奕
 tags: [network, Linux]
 ---
