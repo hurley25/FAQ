@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——关于Unix信号
+title: 关于Unix信号
 tagline: by 浅奕
 tags: [network, Linux]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——学习ARP协议，写一个广播ARP欺骗的程序。
+title: 学习ARP协议，写一个广播ARP欺骗的程序。
 tagline: by 浅奕
 tags: [network, Linux]
 ---

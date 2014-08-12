@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——Linux如何打印函数调用栈
+title: Linux如何打印函数调用栈
 tagline: by 浅奕
 tags: [network, Linux]
 ---

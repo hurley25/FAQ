@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——局域网中做到部分广播
+title: 局域网中做到部分广播
 tagline: by 浅奕
 tags: [network, Linux]
 ---

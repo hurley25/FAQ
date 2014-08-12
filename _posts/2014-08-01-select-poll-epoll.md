@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——select、poll和epoll的区别
+title: select、poll和epoll的区别
 tagline: by 浅奕
 tags: [network, Linux]
 ---

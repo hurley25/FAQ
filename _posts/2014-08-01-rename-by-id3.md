@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——解析出mp3文件的ID3信息
+title: 解析出mp3文件的ID3信息
 tagline: by 浅奕
 tags: [network, Linux]
 ---

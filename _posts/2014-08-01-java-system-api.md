@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——Java在何处调用OS的API
+title: Java在何处调用OS的API
 tagline: by 浅奕
 tags: [java, network, Linux]
 ---

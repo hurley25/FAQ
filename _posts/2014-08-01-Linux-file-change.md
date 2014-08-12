@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——Linux如何监视某个目录下文件的变化
+title: Linux如何监视某个目录下文件的变化
 tagline: by 浅奕
 tags: [network, Linux]
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——采用非阻塞套接字加IO复用的方式实现一个服务器小程序
+title: 采用非阻塞套接字加IO复用的方式实现一个服务器小程序
 tagline: by 浅奕
 tags: [network, Linux]
 ---

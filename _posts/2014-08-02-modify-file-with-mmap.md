@@ -1,7 +1,7 @@
 ---
 layout: post
 category: question
-title: 答题赢公仔系列——如何用访问内存地址的方式修改文件
+title: 如何用访问内存地址的方式修改文件
 tagline: by 浅奕
 tags: [network, Linux]
 ---
