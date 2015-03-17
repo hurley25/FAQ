@@ -1,7 +1,7 @@
 ---
 layout: about
-title: About We
-header: About We
+title: About Us
+header: About Us
 group: navigation
 ---
  * **Name:** XiyouLinuxGroup
